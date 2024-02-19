@@ -11,23 +11,28 @@ interface iUser {
   verified: boolean;
   password: string;
   address: string;
-  blogs?: {}[];
+  bio: string;
+  post?: {}[];
 }
 
 interface iUserData extends iUser, Document {}
 
-const userModel = new Schema<iUserData>({
-  image: { type: String },
-  imageID: { type: String },
-  verified: { type: Boolean, default: false },
-  name: { type: String, unique: true },
-  lastName: { type: String },
-  firstName: { type: String },
-  email: { type: String, toLowerCase: true, trim: true },
-  phoneNumber: { type: String },
-  password: { type: String },
-  address: { type: String },
-  blogs: [{ type: Types.ObjectId, ref: "blogs" }],
-});
+const userModel = new Schema<iUserData>(
+  {
+    image: { type: String },
+    imageID: { type: String },
+    verified: { type: Boolean, default: false },
+    name: { type: String, unique: true },
+    bio: { type: String },
+    lastName: { type: String },
+    firstName: { type: String },
+    email: { type: String, toLowerCase: true, trim: true },
+    phoneNumber: { type: String },
+    password: { type: String },
+    address: { type: String },
+    post: [{ type: Types.ObjectId, ref: "posts" }],
+  },
+  { timestamps: true }
+);
 
 export default model<iUserData>("user", userModel);

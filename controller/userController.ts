@@ -148,7 +148,7 @@ export const deleteAccount = async (req: Request, res: Response) => {
 
 export const getAllAccount = async (req: Request, res: Response) => {
   try {
-    const users = await userModel.find();
+    const users = await userModel.find().sort({ createdAt: -1 });
     return res.status(200).json({
       message: `Viewing ${users?.length} user(s) in the database`,
       data: users,

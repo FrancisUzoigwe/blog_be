@@ -2,6 +2,7 @@ import { Application, Request, Response, json } from "express";
 import cors from "cors";
 import morgan from "morgan";
 import user from "./router/userRouter";
+import post from "./router/postRouter";
 
 export const mainApp = (app: Application) => {
   app.use(json());
@@ -25,4 +26,5 @@ export const mainApp = (app: Application) => {
     }
   });
   app.use("/api", user);
+  app.use("/api", post);
 };
