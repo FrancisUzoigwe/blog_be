@@ -3,6 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import user from "./router/userRouter";
 import post from "./router/postRouter";
+import like from "./router/likeRouter";
 
 export const mainApp = (app: Application) => {
   app.use(json());
@@ -27,4 +28,5 @@ export const mainApp = (app: Application) => {
   });
   app.use("/api", user);
   app.use("/api", post);
+  app.use("/api", like);
 };

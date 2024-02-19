@@ -6,6 +6,7 @@ interface iPost {
   author: {}[];
   postImage: string;
   postImageID: string;
+  like: {}[];
 }
 
 interface iPostData extends iPost, Document {}
@@ -15,6 +16,7 @@ const postModel = new Schema<iPostData>(
     content: { type: String },
     postImage: { type: String },
     postImageID: { type: String },
+    like: [{ type: Types.ObjectId, ref: "like" }],
     author: [
       {
         type: Types.ObjectId,
@@ -22,7 +24,8 @@ const postModel = new Schema<iPostData>(
       },
     ],
   },
+
   { timestamps: true }
 );
 
-export default model<iPostData>("posts", postModel)
+export default model<iPostData>("posts", postModel);
