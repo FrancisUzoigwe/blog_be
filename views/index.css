@@ -44,7 +44,8 @@
   width: 90%;
   height: auto;
 }
-h2 {
+
+.name {
   text-transform: capitalize;
 }
 
