@@ -1,15 +1,15 @@
 import { Document, model, Schema, Types } from "mongoose";
+
 interface iUser {
-  image?: any;
-  imageID?: any;
-  userName?: string;
-  email?: string;
+  image?: string;
+  imageID?: string;
+  name?: string;
   firstName?: string;
   lastName?: string;
-  password?: string;
-  verified?: boolean;
+  email?: string;
   phoneNumber?: string;
-  posts: {}[];
+  address?: string;
+  blogs?: {}[];
 }
 
 interface iUserData extends iUser, Document {}
@@ -17,18 +17,13 @@ interface iUserData extends iUser, Document {}
 const userModel = new Schema<iUserData>({
   image: { type: String },
   imageID: { type: String },
-  userName: { type: String },
+  name: { type: String },
   lastName: { type: String },
   firstName: { type: String },
-  password: { type: String },
+  email: { type: String },
   phoneNumber: { type: String },
-  verified: { type: Boolean, default: false },
-  posts: [
-    {
-      type: Types.ObjectId,
-      ref: "blog",
-    },
-  ],
+  address: { type: String },
+  blogs: [{ type: Types.ObjectId, ref: "blogs" }],
 });
 
 export default model<iUserData>("user", userModel);
