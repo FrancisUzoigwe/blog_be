@@ -1,23 +1,23 @@
 import express, { Application } from "express";
 import { mainApp } from "./mainApp";
-import { blogBD } from "./config/blogDB";
+import { blogDB } from "./config/blogDB";
 
-const app: Application = express();
 const port: number = 2345;
+const app: Application = express();
 
 mainApp(app);
 const Server = app.listen(port, () => {
-  blogBD();
+  blogDB();
 });
 
-process.on("uncaughtException", (error: any) => {
-  console.log(`Server is shutting down due to : ${error?.text}`);
+process.on("uncaughtException", (error) => {
+  console.log("Uncaught exception error", error);
 
   process.exit(1);
 });
 
-process.on("unhandledRejection", (reason: any) => {
-  console.log(`Server is shutting down due to : ${reason?.text}`);
+process.on("unhandledRejection", (reason) => {
+  console.log("unhandled rejection error", reason);
 
   Server.close(() => {
     process.exit(1);
