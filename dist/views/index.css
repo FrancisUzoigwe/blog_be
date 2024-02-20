@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.holder {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(202, 202, 202);
+}
+
+.card {
+  width: 50%;
+  height: 70%;
+
+  @media screen and (max-width: 1000px) {
+    width: 90%;
+  }
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+}
+
+.image {
+  min-width: 100px;
+  min-height: 100px;
+  margin: 5px 0px 0px 0px;
+  font-weight: bolder;
+  border-radius: 50%;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.txt {
+  width: 90%;
+  height: auto;
+}
+
+.name {
+  text-transform: capitalize;
+}
+
+p {
+  margin: 10px 0px;
+}
+
+.flexi {
+  font-weight: bolder;
+}
+a {
+  margin-left: 4px;
+}
