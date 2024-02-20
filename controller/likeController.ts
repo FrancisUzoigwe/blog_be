@@ -7,7 +7,7 @@ export const likePost = async (req: Request, res: Response) => {
     const { postID } = req.params;
     const { userID } = req.params;
 
-    const post = await postModel.findById(postID);
+    const post: any = await postModel.findById(postID);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -15,16 +15,19 @@ export const likePost = async (req: Request, res: Response) => {
     const user = await userModel.findById(userID);
     if (!user) {
       return res.status(404).json({ message: "User not found" });
+    } else {
+      console.log("User successfully found...");
     }
 
     if (post.like.includes(userID)) {
       return res
         .status(400)
         .json({ message: "You have already liked this post" });
+    } else {
+      post.like.push(userID);
+      post.save();
+      console.log("Posted liked successfully...");
     }
-
-    post.like.push(userID);
-    post.save();
 
     return res.status(200).json({ message: "Post liked successfully" });
   } catch (error: any) {
@@ -40,7 +43,7 @@ export const unlikePost = async (req: Request, res: Response) => {
     const { postID } = req.params;
     const { userID } = req.params;
 
-    const post = await postModel.findById(postID);
+    const post: any = await postModel.findById(postID);
     if (!post) {
       return res.status(404).json({ message: "Post not found" });
     }
@@ -54,8 +57,8 @@ export const unlikePost = async (req: Request, res: Response) => {
       return res.status(400).json({ message: "You have not liked this post" });
     }
 
-    post.like = post.like.filter((id) => id !== userID);
-    await post.save();
+    post.like.pull(userID);
+    post.save();
 
     return res.status(200).json({ message: "Post unliked successfully" });
   } catch (error: any) {
