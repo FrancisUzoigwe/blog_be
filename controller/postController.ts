@@ -18,6 +18,7 @@ export const createPost = async (req: Request, res: Response) => {
     }
 
     const post: any = await postModel.create({
+      author: userID,
       title,
       content,
       postImage: secure_url,
@@ -57,17 +58,35 @@ export const getAllPosts = async (req: Request, res: Response) => {
 
 export const deletePosts = async (req: Request, res: Response) => {
   try {
-    const { postID } = req.params;
-    const posts = await postModel.findByIdAndDelete(postID);
+    const { userID } = req.params;
+    const { postID } = req.body;
 
-    return res.status(201).json({
-      message: "Post deleted successfully",
-      data: posts,
-    });
+    const user: any = await userModel.findById(userID);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const post: any = await postModel.findById(postID);
+    if (!post) {
+      return res.status(404).json({ message: "Post not found" });
+    }
+
+    if (post.author.toString() !== userID) {
+      return res
+        .status(403)
+        .json({ message: "You are not authorized to delete this post" });
+    }
+
+    post.deleteOne();
+
+    user.post.pull(postID);
+    user.save();
+
+    return res.status(200).json({ message: "Post deleted successfully" });
   } catch (error: any) {
-    return res.status(403).json({
-      message: "Error occured while deleting posts",
-      data: error?.message,
+    return res.status(500).json({
+      message: "Error occurred while deleting post",
+      error: error.message,
     });
   }
 };
