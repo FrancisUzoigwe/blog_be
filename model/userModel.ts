@@ -22,7 +22,7 @@ const userModel = new Schema<iUserData>(
     image: { type: String },
     imageID: { type: String },
     verified: { type: Boolean, default: false },
-    name: { type: String, unique: true },
+    name: { type: String },
     bio: { type: String },
     lastName: { type: String },
     firstName: { type: String },

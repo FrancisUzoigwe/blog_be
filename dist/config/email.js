@@ -44,7 +44,7 @@ const sendEmail = (user) => __awaiter(void 0, void 0, void 0, function* () {
             name: user.name,
             email: user.email,
             token: user.token,
-            url: `http://localhost:2345/account/${user._id}/${token}/verify`,
+            url: `http://localhost:5137/api/${user === null || user === void 0 ? void 0 : user._id}/${token}/verify-account`,
         });
         const mailer = {
             from: "Techify <kossyuzoigwe@gmail.com>",
