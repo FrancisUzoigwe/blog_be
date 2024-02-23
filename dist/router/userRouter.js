@@ -9,7 +9,7 @@ const multer_1 = __importDefault(require("multer"));
 const upload = (0, multer_1.default)().single("image");
 const router = express_1.default.Router();
 router.route("/register").post(userController_1.registerUser);
-router.route("/:userID/:token/verify-account").patch(userController_1.verifyAccount);
+router.route("/:userID/verify-account").patch(userController_1.verifyAccount);
 router.route("/signin").post(userController_1.signinUser);
 router.route("/:userID/update-profile").patch(userController_1.updateProfile);
 router.route("/:userID/update-image").patch(upload, userController_1.updateImage);

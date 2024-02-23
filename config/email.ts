@@ -37,7 +37,7 @@ export const sendEmail: any = async (user: any) => {
       name: user.name,
       email: user.email,
       token: user.token,
-      url: `http://localhost:5137/api/${user?._id}/${token}/verify-account`,
+      url: `http://localhost:5173/api/${user?._id}/verify-account`,
     });
 
     const mailer: any = {

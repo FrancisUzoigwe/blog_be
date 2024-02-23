@@ -14,7 +14,7 @@ import multer from "multer";
 const upload = multer().single("image");
 const router = express.Router();
 router.route("/register").post(registerUser);
-router.route("/:userID/:token/verify-account").patch(verifyAccount);
+router.route("/:userID/verify-account").patch(verifyAccount);
 router.route("/signin").post(signinUser);
 router.route("/:userID/update-profile").patch(updateProfile);
 router.route("/:userID/update-image").patch(upload, updateImage);

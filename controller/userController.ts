@@ -26,7 +26,6 @@ export const registerUser = async (req: Request, res: Response) => {
 export const verifyAccount = async (req: Request, res: Response) => {
   try {
     const { userID } = req.params;
-
     const user: any = await userModel.findById(userID);
     if (user?.verified === false) {
       const realuser = await userModel.findByIdAndUpdate(user?._id, {
