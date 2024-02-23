@@ -45,6 +45,7 @@ const sendEmail = (user) => __awaiter(void 0, void 0, void 0, function* () {
             email: user.email,
             token: user.token,
             url: `https://techify-io.web.app/api/${user === null || user === void 0 ? void 0 : user._id}/verify-account`,
+            // url: `http://localhost:5173/api/${user?._id}/verify-account`,
         });
         const mailer = {
             from: "Techify <kossyuzoigwe@gmail.com>",
