@@ -37,12 +37,12 @@ export const sendEmail: any = async (user: any) => {
       name: user.name,
       email: user.email,
       token: user.token,
-      url: `https://techify-io.web.app/api/${user?._id}/verify-account`,
-      // url: `http://localhost:5173/api/${user?._id}/verify-account`,
+      // url: `https://techify-io.web.app/api/${user?._id}/verify-account`,
+      url: `http://localhost:5173/api/${user?._id}/verify-account`,
     });
 
     const mailer: any = {
-      from: "Techify <kossyuzoigwe@gmail.com>",
+      from: "Chyme <kossyuzoigwe@gmail.com>",
       to: user.email,
       subject: "Account Verification",
       html: data,
